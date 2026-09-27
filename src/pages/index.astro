@@ -100,8 +100,8 @@ const experience = [
 				<li><strong>Architecture & Engineering:</strong> Collaborated with a cross-functional team on scalable Angular/NgRx systems (candidate tracking, membership portals, and onboarding flows) at Mars Athletic Club.</li>
 			</ul>
 			<div class="teaser-links">
-				<a href={`${import.meta.env.BASE_URL}work`} class="action-link">View all projects &rarr;</a>
-				<a href={`${import.meta.env.BASE_URL}research`} class="action-link">View all research &rarr;</a>
+				<a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/work`} class="action-link">View all projects &rarr;</a>
+				<a href={`${import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL}/research`} class="action-link">View all research &rarr;</a>
 			</div>
 		</div>
 	</section>
