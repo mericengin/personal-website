@@ -1,11 +1,12 @@
 ---
 const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL;
 
 const links = [
-	{ name: 'Home', path: '/' },
-	{ name: 'Work', path: '/work' },
-	{ name: 'Research', path: '/research' },
-	{ name: 'Contact', path: '/#contact' }
+	{ name: 'Home', path: base },
+	{ name: 'Work', path: `${base}work` },
+	{ name: 'Research', path: `${base}research` },
+	{ name: 'Contact', path: `${base}#contact` }
 ];
 ---
 
@@ -14,9 +15,9 @@ const links = [
 		<ul class="nav-list">
 			{links.map((link) => {
 				// Determine if link is active
-				// Handle trailing slashes in currentPath for exact match on '/'
-				const isActive = link.path === '/' 
-					? currentPath === '/' || currentPath === '' 
+				// Handle trailing slashes in currentPath for exact match on base
+				const isActive = link.path === base 
+					? currentPath === base || currentPath === base.replace(/\/$/, '') 
 					: currentPath.startsWith(link.path);
 					
 				return (
