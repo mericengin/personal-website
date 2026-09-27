@@ -1,43 +1,55 @@
-# Astro Starter Kit: Minimal
+# Kaya Meriç Engin — Personal Website
 
-```sh
-npm create astro@latest -- --template minimal
-```
+The personal portfolio and research archive of Kaya Meriç Engin, an ML Engineer and Computational Linguistics MSc student based in Stuttgart, Germany.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Overview
 
-## 🚀 Project Structure
+This repository contains the source code for my personal website, built with [Astro](https://astro.build). It serves as a centralized hub for my:
+- **Academic Research**: Investigations into LLM deductive reasoning, autonomous agents, and NLP applications.
+- **Applied Engineering Work**: Case studies covering financial sentiment pipelines, RAG chatbots, and scalable Angular/NgRx frontend architecture. 
 
-Inside of your Astro project, you'll see the following folders and files:
+The design is typography-led, inspired by print media, and built to be lightweight, fast, and accessible.
+
+## Tech Stack
+
+- **Framework**: [Astro](https://astro.build) (Static Site Generation)
+- **Styling**: Vanilla CSS with custom CSS variables
+- **Typography**: Lora (Serif), Inter (Sans), JetBrains Mono (Monospace)
+- **Deployment**: Designed for static hosting (GitHub Pages, Vercel, Netlify)
+
+## Local Development
+
+To run this project locally:
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+   The site will be available at `http://localhost:4321`.
+
+3. **Build for production**
+   ```bash
+   npm run build
+   ```
+   The production-ready static files will be generated in the `dist/` directory.
+
+## Project Structure
 
 ```text
 /
-├── public/
+├── public/           # Static assets (favicons, etc.)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/   # Reusable UI components (Nav, Footer)
+│   ├── layouts/      # Global layout wrapper and CSS variables
+│   └── pages/        # Astro routes (index, research, work)
+└── astro.config.mjs  # Astro configuration
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Contact
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+You can reach me at [kayamericengin@gmail.com](mailto:kayamericengin@gmail.com) to discuss NLP/LLM research, AI product engineering, or game development.
