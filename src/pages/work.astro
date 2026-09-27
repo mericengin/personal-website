@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+	{
+		title: "Financial Sentiment & Signal Pipeline",
+		context: "U-Glow, 2026 &middot; Python, FastAPI, PyTorch, Matplotlib, Pandas, NumPy, Scikit-learn, Hugging Face Transformers",
+		sections: [
+			{ label: "Problem", text: "Trading signals needed a reliable way to quantify sentiment from noisy, high-volume financial text — market news, SEC/company filings, social feeds." },
+			{ label: "My contribution", text: "As part of the ML team, fine-tuned and comparatively evaluated FinBERT and RoBERTa for sentiment scoring, built automated extraction and cleaning pipelines from financial APIs, and led hypothesis-testing and QA cycles ahead of launch, alongside the team building the wider application and trading logic." },
+			{ label: "Outcome", text: "A validated sentiment-scoring component feeding downstream trading signals, backed by rigorous comparative evaluation." }
+		]
+	},
+	{
+		title: "RAG-Driven Internal Chatbot & Copilot Studio Bot",
+		context: "Mars Athletic Club, 2024–2025 &middot; HTML, CSS, Angular, TypeScript, Copilot Studio",
+		sections: [
+			{ label: "Problem", text: "Employees across departments had no fast way to get answers from internal knowledge and systems." },
+			{ label: "My contribution", text: "Contributed to a RAG-driven internal chatbot, a Copilot Studio bot for Microsoft Teams, and a custom GPT tool, working with the broader engineering team on each — three entry points into the same underlying support problem." },
+			{ label: "Outcome", text: "Multiple AI-assisted support surfaces adopted across departments, cutting down manual lookup." }
+		]
+	},
+	{
+		title: "Candidate Member Tracking Platform",
+		context: "Mars Athletic Club &middot; HTML, CSS, Angular, TypeScript, NgRx, RxJS",
+		sections: [
+			{ label: "Problem", text: "Sales and management had no centralized way to track the status of prospective (\"candidate\") members moving through the pipeline." },
+			{ label: "My contribution", text: "Worked within a team of frontend, backend, and QA engineers to build the application in Angular; contributed to the NgRx state layer keeping candidate-status workflows consistent across teams." },
+			{ label: "Outcome", text: "A single system of record giving sales and management real-time visibility into candidate status, replacing fragmented manual tracking." }
+		]
+	},
+	{
+		title: "Membership Portal",
+		context: "Mars Athletic Club &middot; HTML, CSS, TypeScript, Angular, NgRx, RxJS",
+		sections: [
+			{ label: "Problem", text: "Existing members had no self-service way to manage their membership — upgrades, added rights, freezing, or cancellation all went through manual handling." },
+			{ label: "My contribution", text: "Worked as part of the frontend team on the Angular portal, contributing to the NgRx state management for membership-altering actions — upgrades, rights purchases, freezing, deletion — built in coordination with the team's backend engineers." },
+			{ label: "Outcome", text: "Members could manage their own accounts end-to-end, cutting the manual processing load on staff." }
+		]
+	},
+	{
+		title: "Become a Member Flow",
+		context: "Mars Athletic Club &middot; HTML, CSS, Angular, TypeScript, NgRx, RxJS",
+		sections: [
+			{ label: "Problem", text: "Converting a visitor into a paying member meant one coherent flow — personal information, club selection, tier selection, payment — with state that had to survive across every step." },
+			{ label: "My contribution", text: "Part of the frontend team on the multi-step onboarding flow in Angular, contributing to the NgRx state management carrying data from personal details through club selection, membership tier (Gold, Diamond, etc.), and payment — built in close coordination with backend and QA engineers on the team." },
+			{ label: "Outcome", text: "The primary conversion path for new memberships — from first entry to paid member in one continuous flow." }
+		]
+	}
+];
+---
+
+<Layout title="Work & Engineering | Kaya Meriç Engin">
+	<Nav slot="nav" />
+	
+	<section class="work-intro slide-up">
+		<h1 class="page-title">Engineering Projects</h1>
+		<p class="intro-text">Applied machine learning and software engineering outcomes, spanning NLP pipelines, internal AI tooling, and scalable state management.</p>
+	</section>
+
+	<hr class="section-divider slide-up delay-1" />
+
+	<div class="project-list slide-up delay-2">
+		{projects.map((project) => (
+			<article class="project-case">
+				<header class="project-header">
+					<span class="project-meta" set:html={project.context}></span>
+					<h2 class="project-title">{project.title}</h2>
+				</header>
+				<div class="project-details">
+					{project.sections.map(section => (
+						<div class="detail-section">
+							<span class="detail-label">{section.label}.</span>
+							<span class="detail-text">{section.text}</span>
+						</div>
+					))}
+				</div>
+			</article>
+		))}
+	</div>
+
+	<Footer slot="footer" />
+</Layout>
+
+<style>
+	/* Animation */
+	.slide-up {
+		opacity: 0;
+		transform: translateY(15px);
+		animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	}
+	.delay-1 { animation-delay: 0.1s; }
+	.delay-2 { animation-delay: 0.2s; }
+	
+	@keyframes slideUpFade {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.page-title {
+		font-family: var(--font-serif);
+		font-size: 2.5rem;
+		margin-bottom: 0.5rem;
+		font-weight: 400;
+	}
+
+	.intro-text {
+		font-size: 1.1rem;
+		color: var(--c-ink-light);
+		max-width: 600px;
+	}
+
+	.project-list {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+
+	.project-case {
+		max-width: 680px;
+	}
+
+	.project-header {
+		margin-bottom: 1.5rem;
+	}
+
+	.project-meta {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		color: var(--c-ink-light);
+		margin-bottom: 0.5rem;
+	}
+
+	.project-title {
+		font-family: var(--font-serif);
+		font-size: 1.5rem;
+		line-height: 1.35;
+		margin-bottom: 0.5rem;
+		color: var(--c-ink);
+	}
+
+	.project-details {
+		background: #fff;
+		border: 1px solid var(--c-border);
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		font-size: 1.05rem;
+		line-height: 1.65;
+	}
+
+	.detail-section {
+		display: block;
+	}
+
+	.detail-label {
+		font-weight: 600;
+		font-family: var(--font-sans);
+		margin-right: 0.5rem;
+	}
+
+	.detail-text {
+		color: var(--c-ink);
+	}
+</style>

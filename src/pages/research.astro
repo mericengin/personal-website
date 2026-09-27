@@ -1,0 +1,164 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const researchPapers = [
+	{
+		title: "Testing the Limits of Distributional Semantics: An Empirical Investigation of Deductive Reasoning in LLMs",
+		date: "Apr–Sep 2026",
+		abstract: [
+			{ label: "Problem", text: "Investigated whether LLMs perform genuine deductive reasoning or rely on semantic pattern-matching, motivated by the \"stochastic parrot\" question." },
+			{ label: "Method", text: "Built a custom evaluation pipeline testing GPT-4o-Mini, Gemini Flash Lite, and GPT-5 Mini against a hand-constructed set of 24 syllogisms. Tested under scrambled-vocabulary, Chain-of-Thought, and belief-bias conditions, with cross-lingual checks in English, German, and Turkish. Authored a 12-page LaTeX report with Python-generated visualizations." },
+			{ label: "Finding", text: "Semantic dependence isn't a fixed property of LLMs—base models collapse without semantic priors, while advanced reasoning architectures stay near-flawless and structure-independent." }
+		]
+	},
+	{
+		title: "Comparing Human-Agent and Inter-Agent Model Development in Question Classification",
+		date: "Apr–Aug 2026",
+		coauthor: "Jason Holt, Pengcheng Yao, both from Institut für Maschinelle Sprachverarbeitung, University of Stuttgart",
+		abstract: [
+			{ label: "Problem", text: "Compared how human researchers and autonomous LLM agents navigate ML model development, assessing paths taken and resulting performance." },
+			{ label: "Method", text: "Used an adapted AutoResearch framework packaged into a Docker container. Guided agents (GLM 5.2, Qwen3.7 Plus, Kimi K2.7) through iterative propose-train-evaluate-update loops on a question classification task via OpenCode, benchmarked against human-built baselines (logistic regression, Naive Bayes, CNN-RoBERTa with semantic/NER/POS features), and quantified search-path similarity with Jaccard coefficients." },
+			{ label: "Finding", text: "Near-frontier open-weight agents matched or beat the human baseline despite minimal overlap in the architectures they explored. Looser, less constrained instructions led to stronger agent performance." }
+		]
+	},
+	{
+		title: "Automated Screening for Cognitive Decline: From Picture Descriptions to Algorithms",
+		date: "Apr–Jul 2026",
+		coauthor: "Feixiang Xiao, Institut für Maschinelle Sprachverarbeitung, University of Stuttgart",
+		abstract: [
+			{ label: "Problem", text: "A review and evaluation of automated cognitive-decline screening using speech and eye-movement biomarkers, analyzing the state of the art." },
+			{ label: "Method", text: "Traced eight core studies (2016–2025) from classical NLP to self-supervised and multimodal models (Llama-405B, Whisper, mHuBERT)." },
+			{ label: "Finding", text: "There is a severe gap between benchmark performance and clinical viability. One modern ensemble scored well in aggregate but had zero recall on the dementia class. Models often lean on demographic confounds, such as treating language itself as a proxy for cognitive status." }
+		]
+	}
+];
+---
+
+<Layout title="Research | Kaya Meriç Engin">
+	<Nav slot="nav" />
+	
+	<section class="research-intro slide-up">
+		<h1 class="page-title">Research Archive</h1>
+		<p class="intro-text">Academic investigations spanning LLM deductive reasoning, autonomous agent behavior, and applied computational linguistics.</p>
+	</section>
+
+	<hr class="section-divider slide-up delay-1" />
+
+	<div class="research-list slide-up delay-2">
+		{researchPapers.map((paper, index) => (
+			<article class="paper">
+				<header class="paper-header">
+					<span class="paper-meta">{paper.date}</span>
+					<h2 class="paper-title">{paper.title}</h2>
+					{paper.coauthor && <p class="coauthor">Co-authored with {paper.coauthor}</p>}
+				</header>
+				<div class="paper-abstract">
+					{paper.abstract.map(section => (
+						<div class="abstract-section">
+							<span class="abstract-label">{section.label}.</span>
+							<span class="abstract-text">{section.text}</span>
+						</div>
+					))}
+				</div>
+			</article>
+		))}
+	</div>
+
+	<Footer slot="footer" />
+</Layout>
+
+<style>
+	/* Animation */
+	.slide-up {
+		opacity: 0;
+		transform: translateY(15px);
+		animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	}
+	.delay-1 { animation-delay: 0.1s; }
+	.delay-2 { animation-delay: 0.2s; }
+	
+	@keyframes slideUpFade {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.page-title {
+		font-family: var(--font-serif);
+		font-size: 2.5rem;
+		margin-bottom: 0.5rem;
+		font-weight: 400;
+	}
+
+	.intro-text {
+		font-size: 1.1rem;
+		color: var(--c-ink-light);
+		max-width: 600px;
+	}
+
+	.research-list {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+
+	.paper {
+		/* Tighter measure for reading */
+		max-width: 680px;
+	}
+
+	.paper-header {
+		margin-bottom: 1.5rem;
+	}
+
+	.paper-meta {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		color: var(--c-ink-light);
+		margin-bottom: 0.5rem;
+	}
+
+	.paper-title {
+		font-family: var(--font-serif);
+		font-size: 1.5rem;
+		line-height: 1.35;
+		margin-bottom: 0.5rem;
+		color: var(--c-ink);
+	}
+
+	.coauthor {
+		font-size: 0.9rem;
+		color: var(--c-ink-light);
+		font-style: italic;
+		margin: 0;
+	}
+
+	.paper-abstract {
+		background: #fff;
+		border: 1px solid var(--c-border);
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		font-size: 1.05rem;
+		line-height: 1.65;
+	}
+
+	.abstract-section {
+		display: block;
+	}
+
+	.abstract-label {
+		font-weight: 600;
+		font-family: var(--font-sans);
+		margin-right: 0.5rem;
+	}
+
+	.abstract-text {
+		color: var(--c-ink);
+	}
+</style>

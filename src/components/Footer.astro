@@ -1,0 +1,58 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<hr class="section-divider" />
+	<div class="footer-content">
+		<p class="copyright">&copy; {year} Kaya Meriç Engin.</p>
+		<div class="footer-links">
+			<a href="mailto:kayamericengin@gmail.com">kayamericengin@gmail.com</a>
+			<a href="https://www.linkedin.com/in/kaya-meric-engin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+			<a href="https://github.com/mericengin" target="_blank" rel="noopener noreferrer">GitHub</a> 
+		</div>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		margin-top: auto;
+		padding-bottom: 2rem;
+		font-size: 0.9rem;
+	}
+
+	.footer-content {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	@media (min-width: 600px) {
+		.footer-content {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+
+	.copyright {
+		color: var(--c-ink-light);
+		margin: 0;
+	}
+
+	.footer-links {
+		display: flex;
+		gap: 1.5rem;
+	}
+
+	.footer-links a {
+		text-decoration: none;
+		color: var(--c-ink-light);
+	}
+
+	.footer-links a:hover {
+		color: var(--c-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--c-border);
+	}
+</style>
